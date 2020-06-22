@@ -175,10 +175,14 @@ const move = dir => {
         for (let i = grid.length - 1; i >= 0; i--) {
             for (let j = grid[i].length - 1; j >= 0; j--) {
                 let moving = grid[i][j] 
-                if (moving.type && (i + 1) <= grid.length - 1) {
+                if (moving.type && (i + 1) < grid.length) {
                     grid[i + 1][j] = moving;
                     grid[i][j] = {};
-                } 
+                } else if (moving.type && (i + 1) >= grid.length) {
+                    // Why do my Tetriminos stall and re-render before reaching the bottom?
+                    playTetrimino = {};
+                    return;
+                }
             }
         }
     }

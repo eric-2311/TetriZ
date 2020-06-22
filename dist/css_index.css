@@ -19,7 +19,7 @@
 .g-pos {
     width: 25px;
     height: 25px;
-    border: 1px dotted gray;
+    border: 1px dotted lightgray;
     display: inline-block;
     box-sizing: border-box;
 }
