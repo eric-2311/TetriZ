@@ -1,6 +1,15 @@
+.title {
+    font-family: 'Permanent Marker', cursive;
+    font-weight: bold;
+    color: red;
+    display: flex;
+    justify-content: center;
+}
+
 #gameGrid{
     /* background-color: gray; */
-    /* margin: auto; */
+    margin: auto;
+    width: 250px;
 }
 
 .g-row {
@@ -12,4 +21,5 @@
     height: 25px;
     border: 1px dotted gray;
     display: inline-block;
+    box-sizing: border-box;
 }
