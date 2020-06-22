@@ -10,5 +10,11 @@ Following the rules and functionality of traditional Tetris, players will be abl
 * Send multiple completed lines of Tetrinos
 * View their current score (or number of lines sent)
 * Have difficulty levels increase accordingly to score (speed increase)
-* Players will be able to obtain and use powerups to enhance gameplay
+* Players will be able to obtain and use power-ups to enhance gameplay
+
+# Power-ups
+
+* Bomb (clears lines)
+* Slow (slows speed of dropping Tetriminos)
+* Speed (speeds up dropping of Tetriminos)
 
