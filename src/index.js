@@ -1,4 +1,4 @@
-// Default game grid
+// Default game grid, matrix of empty objects
 let grid = [
     [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
@@ -26,8 +26,11 @@ let grid = [
 
 // Creating new div elements and appending to render rows and positions
 const newGrid = () => {
+    const gridObj = document.getElementById('gameGrid');
+    gridObj.innerHTML = '';
+
     grid.forEach(row => {
-        const gridObj = document.getElementById('gameGrid');
+        
         // debugger
         const rowObj = document.createElement('div');
         rowObj.classList.add('g-row');
@@ -55,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // debugger
         if (playTetrimino.type) {
             // debugger
+            move('down')
         } else {
             // debugger
             playTetrimino = {
@@ -65,11 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         newGrid();
-    }, 1000);
+    }, 200);
     
 });
 
-// Square Tetrimino
+// Square Tetrimino 
 const sqTetrimino = {
     type: 'sq',
     block: [
@@ -79,6 +83,7 @@ const sqTetrimino = {
 }
 
 // T-Tetrimino
+// 0 is a falsey value
 const tTetrimino = {
     type: 't',
     block: [
@@ -161,4 +166,20 @@ const placeTetrimino = () => {
             }
         })
     })
+}
+
+// Using a switch statement to determine how each Tetrimino is moving and render accordingly
+const move = dir => {
+    switch(dir){
+        case 'down':
+        for (let i = grid.length - 1; i >= 0; i--) {
+            for (let j = grid[i].length - 1; j >= 0; j--) {
+                let moving = grid[i][j] 
+                if (moving.type && (i + 1) <= grid.length - 1) {
+                    grid[i + 1][j] = moving;
+                    grid[i][j] = {};
+                } 
+            }
+        }
+    }
 }
