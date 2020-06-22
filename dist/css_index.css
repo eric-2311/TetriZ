@@ -1,0 +1,14 @@
+#gameGrid{
+    /* background-color: gray; */
+}
+
+.g-row {
+    height: 25px;
+}
+
+.g-pos {
+    width: 25px;
+    height: 25px;
+    border: 1px dotted gray;
+    display: inline-block;
+}
