@@ -1,5 +1,5 @@
 // Default game grid
-const grid = [
+let grid = [
     [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
     [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
@@ -28,6 +28,7 @@ const grid = [
 const newGrid = () => {
     grid.forEach(row => {
         const gridObj = document.getElementById('gameGrid');
+        // debugger
         const rowObj = document.createElement('div');
         rowObj.classList.add('g-row');
         gridObj.appendChild(rowObj);
@@ -35,14 +36,34 @@ const newGrid = () => {
         row.forEach(pos => {
             const posObj = document.createElement('div');
             posObj.classList.add('g-pos');
-            rowObj.appendChild(posObj)
+            
+            // Rendering Tetriminos based on type 
+            if (pos.type) {
+                posObj.classList.add(pos.type)
+            }
+            rowObj.appendChild(posObj);
         })
     })
 }
 
+// Start with an empty object Tetrimino
+let playTetrimino = {};
+
 // Ensures grid renders upon load
 document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => {
+        // debugger
+        if (playTetrimino.type) {
+            // debugger
+        } else {
+            // debugger
+            playTetrimino = {
+                ...generateTetrimino()
+            // debugger
+            }
+            placeTetrimino()
+        }
+
         newGrid();
     }, 1000);
     
@@ -124,5 +145,20 @@ const tetriminos = [
 
 // Generating a Tetrimino at random
 const generateTetrimino = () => {
-    const currentTetrimino = tetriminos[Math.floor(Math.random * tetriminos.length)]
+    const currentTetrimino = tetriminos[Math.floor(Math.random() * tetriminos.length)];
+    // debugger
+    return currentTetrimino;
+}
+
+// Placing a Tetrimino and re-rendering a new game grid with it
+const placeTetrimino = () => {
+    grid = grid.map((row, rowIdx) => {
+        return row.map((pos, posIdx) => {
+            if (rowIdx < 2 && posIdx > 2 && playTetrimino.block[rowIdx][posIdx - 3]) {
+                return playTetrimino;
+            } else {
+                return {};
+            }
+        })
+    })
 }
