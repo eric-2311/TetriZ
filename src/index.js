@@ -3,20 +3,22 @@ import Game from './Game.js';
 // Ensures grid renders upon load
 document.addEventListener("DOMContentLoaded", () => {
     const newGame = new Game;
+    newGame.handleInput();
 
     setInterval(() => {
         // debugger
         if (newGame.playTetrimino.type) {
-            debugger
-            newGame.move('drop')
+            // debugger
+            newGame.move(newGame.inputMove)
+            // newGame.move(newGame.inputMove)
         } else {
-            debugger
+            // debugger
             newGame.playTetrimino = { ...generateTetrimino() } 
             newGame.placeTetrimino()
         }
 
         newGame.newGrid();
-    }, 200);
+    }, 100);
     
 });
 
@@ -98,7 +100,7 @@ const tetriminos = [
 // Generating a Tetrimino at random
 const generateTetrimino = () => {
     const currentTetrimino = tetriminos[Math.floor(Math.random() * tetriminos.length)];
-    debugger
+    // debugger
     return currentTetrimino;
 }
 

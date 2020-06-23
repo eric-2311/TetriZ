@@ -1,6 +1,7 @@
 class Game {
     constructor(game){
         this.game = game;
+        this.inputMove = 'drop';
 
         // Start with an empty object Tetrimino
         this.playTetrimino = {};
@@ -82,14 +83,48 @@ class Game {
                         this.grid[i][j] = {};
                     } else if (this.grid[i][j].type && (i + 1) >= this.grid.length) {
                         // Why do my Tetriminos stall and re-render before reaching the bottom?
-                        debugger
+                        // debugger
                         this.playTetrimino = {};
                         return;
                     }
                 }
             }
             break;
+
+            case 'right':
+                for (let i = this.grid.length -1; i >= 0; i--) {
+                    for (let j = this.grid[i].length - 1; j >= 0; j--) {
+                        if (this.grid[i][j].type && (j + 1) < this.grid[i].length) {
+                            this.grid[i][j + 1] = this.grid[i][j];
+                            this.grid[i][j] = {};
+                            this.inputMove = 'drop';
+                        } 
+                    }
+                }
         }
+    }
+
+    // Adding an event listener for key input to determine move function
+    handleInput() {
+        document.addEventListener("keydown", (e) => {
+            const input = e.key;
+
+            switch(input){
+                case 'ArrowUp':
+                    console.log('up key');
+                    break;
+                case 'ArrowDown':
+                    console.log('down key');
+                    break;
+                case 'ArrowRight':
+                    this.inputMove = 'right'
+                    console.log('right key');
+                    break;
+                case 'ArrowLeft':
+                    console.log('left key');
+                    break;
+            }
+        })
     }
 }
 
