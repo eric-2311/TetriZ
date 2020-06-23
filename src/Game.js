@@ -92,15 +92,32 @@ class Game {
             break;
 
             case 'right':
-                for (let i = this.grid.length -1; i >= 0; i--) {
+                for (let i = this.grid.length - 1; i >= 0; i--) {
+                    if (!this.grid[i][this.grid[i].length - 1].type) {
                     for (let j = this.grid[i].length - 1; j >= 0; j--) {
-                        if (this.grid[i][j].type && (j + 1) < this.grid[i].length) {
+                        if (this.grid[i][j].type && (!this.grid[i - 1][this.grid[i].length - 1].type)) {
                             this.grid[i][j + 1] = this.grid[i][j];
                             this.grid[i][j] = {};
                             this.inputMove = 'drop';
-                        } 
-                    }
+                            }    
+                        }
+                    } else if (this.grid[i][this.grid[i].length - 1].type && this.grid[i][this.grid[i].length - 1].type === this.playTetrimino.type) {
+                            debugger
+                            this.inputMove = 'drop';
+                            return;
+                        }
                 }
+            break;
+        }
+    }
+
+    checkCollision() {
+        for (let i = 0; i < this.grid.length; i++) {
+            for (let j = 0; j < this.grid[i].length; j++) {
+                if (j === 9 && this.grid[i][j].type) {
+                    this.inputMove = '';
+                }
+            }
         }
     }
 
