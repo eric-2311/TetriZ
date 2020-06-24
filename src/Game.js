@@ -122,7 +122,34 @@ class Game {
                        }
                    }
                 }
+            break;
+
+            // case 'up':
+            //     for (let i = 0; i < this.grid.length; i++) {
+            //         for (let j = 0; j < this.grid[i].length; j++) {
+            //             if (this.grid[i][j].type) {
+            //                 this.grid[j][i] = this.playTetrimino.block[i][j];
+            //                 this.grid[j][i] = {}
+            //                 // this.placeTetrimino()
+            //                 console.log(this.grid)
+            //                 this.inputMove = 'drop'
+                            
+            //             } else if (this.playTetrimino.block[j] === undefined) {
+            //                 continue;
+            //             } else if (this.grid[i][j] === undefined){
+            //                 continue; 
+            //             }
+            //         }
+            //     }
+            // break;
         }
+    }
+
+    // Rotating a Tetrimino
+    transpose(arr) {
+        return arr[0].map((col, i) => {
+            return arr.map(row => row[i])
+        })
     }
 
     // Adding an event listener for key input to determine move function
@@ -132,6 +159,13 @@ class Game {
 
             switch(input){
                 case 'ArrowUp':
+                    // debugger
+                    this.playTetrimino.block = this.transpose(this.playTetrimino.block);
+                    // this.inputMove = 'up'
+                    // debugger
+                    console.log(this.transpose(this.playTetrimino.block))
+                    this.placeTetrimino();
+                    // this.newGrid();
                     console.log('up key');
                     break;
                 case 'ArrowDown':
