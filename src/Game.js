@@ -102,7 +102,7 @@ class Game {
                                 }    
                         }
                     } else if (this.grid[i][this.grid[i].length - 1].type && this.grid[i][this.grid[i].length - 1].type === this.playTetrimino.type) {
-                            debugger
+                            // debugger
                             this.inputMove = 'drop';
                             return;
                     }
@@ -116,6 +116,9 @@ class Game {
                             this.grid[i][j - 1] = this.grid[i][j];
                             this.grid[i][j] = {};
                             this.inputMove = 'drop'   
+                       } else if (i === this.grid.length - 1 || this.grid[i + 1][0].type) {
+                            this.inputMove = 'drop';
+                            return;
                        }
                    }
                 }
